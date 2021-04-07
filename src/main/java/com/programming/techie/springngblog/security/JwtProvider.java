@@ -1,5 +1,6 @@
 package com.programming.techie.springngblog.security;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
@@ -26,5 +27,19 @@ public class JwtProvider {
                 .setSubject(principal.getUsername())
                 .signWith(key)
                 .compact();
+    }
+
+    public boolean validateToken(String jwt) {
+        Jwts.parser().setSigningKey(key).parseClaimsJws(jwt);
+        return true;
+    }
+
+    public String getUsernameFromJWT(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(key)
+                .parseClaimsJws(token)
+                .getBody();
+
+        return claims.getSubject();
     }
 }
