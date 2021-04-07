@@ -1,5 +1,6 @@
 package com.programming.techie.springngblog.controller;
 
+import com.programming.techie.springngblog.dto.LoginRequest;
 import com.programming.techie.springngblog.dto.RegisterRequest;
 import com.programming.techie.springngblog.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,10 @@ public class AuthController {
     public ResponseEntity signup(@RequestBody RegisterRequest registerRequest) {
         authService.signup(registerRequest);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @PostMapping("/login")
+    public String login(@RequestBody LoginRequest loginRequest) {
+        return authService.login(loginRequest);
     }
 }
