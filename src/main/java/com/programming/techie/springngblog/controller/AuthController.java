@@ -2,6 +2,7 @@ package com.programming.techie.springngblog.controller;
 
 import com.programming.techie.springngblog.dto.LoginRequest;
 import com.programming.techie.springngblog.dto.RegisterRequest;
+import com.programming.techie.springngblog.exception.SpringBlogException;
 import com.programming.techie.springngblog.service.AuthService;
 import com.programming.techie.springngblog.service.AuthenticationResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) throws SpringBlogException {
         return authService.login(loginRequest);
     }
 }
